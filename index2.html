@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special for Priyu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        /* Letter Styles */
+        .letter {
+            width: 250px;
+            height: 150px;
+            background: linear-gradient(45deg, #ffd1dc, #fff);
+            border: 3px solid #ff69b4;
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: #ff007f;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .letter::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 75px;
+            background: #ff69b4;
+            clip-path: polygon(0 100%, 50% 0, 100% 100%);
+        }
+
+        .letter.open {
+            transform: rotateX(180deg);
+        }
+
+        .letter.hidden {
+            display: none;
+        }
+
+        /* Heart */
+        .heart {
+            position: absolute;
+            width: 100px; /* Reduced size */
+            height: 90px;
+            background: rgb(255, 0, 255);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            animation: none;
+            display: none;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 90px;
+            background: rgb(255, 0, 255);
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -45px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: 45px;
+        }
+
+        .heart.beating {
+            animation: beatHeart 1s ease-in-out infinite;
+        }
+
+        /* Apology Message */
+        .apology-message {
+            font-size: 20px;
+            color: #660033;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+            animation: fadeIn 2s;
+        }
+
+        /* Continue Button */
+        .continue-btn {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #8a35eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+            margin-top: 20px;
+        }
+
+        /* Password Section */
+        .password-container {
+            display: none;
+            animation: fadeIn 2s;
+        }
+
+        .password-input {
+            font-size: 18px;
+            padding: 10px;
+            border: 2px solid #ff69b4;
+            border-radius: 5px;
+        }
+
+        .password-hint {
+            font-size: 16px;
+            color: #af0c5e9d;
+            margin-top: 10px;
+        }
+
+        /* Wrong Password */
+        .wrong-password {
+            color: rgb(0, 255, 128);
+            font-size: 16px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Romantic Message */
+        .special-message {
+            font-size: 22px;
+            color: #660033;
+            font-weight: bold;
+            display: none;
+            margin-top: 30px;
+        }
+
+        @keyframes beatHeart {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1) rotate(-45deg);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2) rotate(-45deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Letter -->
+        <div class="letter" id="letter">
+            TO JYOTOSNA <br>EXTREMELY IMPORTANT<br>HANDLE WITH CARE
+        </div>
+
+        <!-- Heart -->
+        <div class="heart" id="heart"></div>
+
+        <!-- Apology Message -->
+        <div class="apology-message" id="apologyMessage">
+           To my lovely sister as a gesture of my love for her 
+        </div>
+
+        <!-- Continue Button -->
+        <button class="continue-btn" id="continueBtn">Continue</button>
+
+        <!-- Password Section -->
+        <div class="password-container" id="passwordContainer">
+            <input type="password" class="password-input" id="password" placeholder="Enter password">
+            <div class="wrong-password" id="wrongPassword">Wrong password. Try again!</div>
+            <div class="password-hint" id="passwordHint">Password is the birthdate of my most loved person.</div>
+        </div>
+
+        <!-- Romantic Message -->
+        <div class="special-message" id="specialMessage">
+            Dear Sister,
+
+On your special day, I just want to remind you how much you mean to me. You’re not just my sister but my biggest cheerleader, my confidant, and my forever friend. Your kindness, strength, and laughter light up every room you walk into, and I feel so lucky to have you in my life.
+
+As your birthday approaches, I hope all your dreams come true and that this year brings you nothing but happiness, love, and success. You deserve the absolute best in life because you are the best.
+
+Happy Birthday in advance, my lovely sister! You’re truly a blessing, and I love you to the moon and back!
+<br>
+With all my love,<br>
+Devu
+        </div>
+    </div>
+
+    <script>
+        const letter = document.getElementById('letter');
+        const heart = document.getElementById('heart');
+        const apologyMessage = document.getElementById('apologyMessage');
+        const continueBtn = document.getElementById('continueBtn');
+        const passwordContainer = document.getElementById('passwordContainer');
+        const password = document.getElementById('password');
+        const wrongPassword = document.getElementById('wrongPassword');
+        const passwordHint = document.getElementById('passwordHint');
+        const specialMessage = document.getElementById('specialMessage');
+
+        // Step 1: Letter click
+        letter.addEventListener('click', function () {
+            letter.classList.add('hidden'); // Hide the letter
+            heart.style.display = 'block'; // Show the heart
+            heart.classList.add('beating');
+
+            // Step 2: Heart beats 5 times
+            setTimeout(() => {
+                heart.style.display = 'none'; // Hide the heart
+                apologyMessage.style.display = 'block'; // Show the apology message
+                continueBtn.style.display = 'block'; // Show the continue button
+            }, 5000);
+        });
+
+        // Step 3: Continue button click
+        continueBtn.addEventListener('click', function () {
+            apologyMessage.style.display = 'none';
+            continueBtn.style.display = 'none';
+            passwordContainer.style.display = 'block';
+        });
+
+        // Step 4: Password validation
+        password.addEventListener('input', function () {
+            if (password.value === '0812') { // Correct password
+                passwordContainer.style.display = 'none';
+                specialMessage.style.display = 'block'; // Show the romantic message
+            } else {
+                wrongPassword.style.display = 'block'; // Show wrong password message
+                setTimeout(() => {
+                    passwordHint.textContent = "This special day is coming"; // Show second hint
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
