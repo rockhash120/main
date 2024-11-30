@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Special message for Josto</title>
+    <title>Special for Priyu</title>
     <style>
         body {
             margin: 0;
@@ -15,6 +15,22 @@
             background: linear-gradient(to right, #ff7e5f, #feb47b);
             overflow: hidden;
             font-family: Arial, sans-serif;
+            position: relative;
+        }
+
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('floating-hearts.png') repeat;
+            animation: moveBackground 10s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
         }
 
         .container {
@@ -62,7 +78,7 @@
         /* Heart */
         .heart {
             position: absolute;
-            width: 100px; /* Reduced size */
+            width: 100px;
             height: 90px;
             background: rgb(255, 0, 255);
             top: 50%;
@@ -93,7 +109,7 @@
         }
 
         .heart.beating {
-            animation: beatHeart 1s ease-in-out infinite;
+            animation: beatHeart 1s ease-in-out infinite, colorChange 2s infinite alternate;
         }
 
         /* Apology Message */
@@ -154,6 +170,7 @@
             font-weight: bold;
             display: none;
             margin-top: 30px;
+            animation: typing 4s steps(40) forwards, blinkCaret 0.75s step-end infinite;
         }
 
         @keyframes beatHeart {
@@ -173,9 +190,29 @@
                 opacity: 1;
             }
         }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blinkCaret {
+            50% { border-color: transparent; }
+        }
+
+        /* Glow effect for continue button */
+        .continue-btn:hover {
+            background-color: #9b6fef;
+            box-shadow: 0 0 20px #ff007f;
+            transform: scale(1.1);
+        }
+
     </style>
 </head>
 <body>
+    <!-- Background Animation -->
+    <div class="background-animation"></div>
+    
     <div class="container">
         <!-- Letter -->
         <div class="letter" id="letter">
@@ -252,13 +289,17 @@ Devu
             if (password.value === '0812') { // Correct password
                 passwordContainer.style.display = 'none';
                 specialMessage.style.display = 'block'; // Show the romantic message
+                // Play success sound
+                document.getElementById("successSound").play();
             } else {
-                wrongPassword.style.display = 'block'; // Show wrong password message
-                setTimeout(() => {
-                    passwordHint.textContent = "This special day is coming"; // Show second hint
-                }, 1000);
+                wrongPassword.style.display = 'block';
             }
         });
     </script>
+
+    <!-- Sound effects -->
+    <audio id="successSound">
+        <source src="success-sound.mp3" type="audio/mp3">
+    </audio>
 </body>
 </html>
